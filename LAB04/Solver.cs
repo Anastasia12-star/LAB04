@@ -1,10 +1,12 @@
-﻿namespace LAB04
+﻿using System.Reflection.Metadata.Ecma335;
+
+namespace LAB04
 {
     /// <summary>
     /// Класс Solver содержит решения задач лабораторной работы.
     /// Методы сгруппированы по блокам.
-    /// Ф.И.О - 
-    /// Вариант - 
+    /// Ф.И.О - Левдорович А.В
+    /// Вариант - 3
     /// </summary>
     public class Solver
     {
@@ -24,8 +26,8 @@
         /// </example>
         public static string IntroduceYourself(string name, int age)
         {
-            // Реализовать метод для решения задачи
-            throw new NotImplementedException();
+            string formattedName = char.ToUpper(name[0]) + name.Substring(1).ToLower();
+            return $"Hello! My name is {formattedName} and i am {age} years old.";
         }
 
         // =========================
@@ -73,10 +75,9 @@
         /// <example>
         /// RublesToDollars(9000) → "9000 рублей = 3061 долларов"
         /// </example>
-        public static string RublesToDollars(double rubles)
-        {
-            // Реализовать метод для решения задачи
-            throw new NotImplementedException();
+        public static string RublesToDollars(double rubles) {
+            int dollars = (int)(rubles / 2.94);
+            return $"{rubles} рублей = {dollars} долларов";
         }
 
         /// <summary>
@@ -175,8 +176,17 @@
         /// </example>
         public static string GetQuadrant(double x, double y)
         {
-            // Реализовать метод для решения задачи
-            throw new NotImplementedException();
+            if (x == 0 || y == 0)
+                return $"Точка ({x}, {y}) находится на пересечении четвертей";
+            if (x > 0 && y > 0)
+                return $"Точка ({x}, {y}) находится в I четверти";
+            else if (x < 0 && y > 0)
+                return $"Точка ({x}, {y}) находится в II четверти";
+            else if (x < 0 && y < 0)
+                return $"Точка ({x}, {y}) находится в III четверти";
+            else
+                return $"Точка ({x}, {y}) находится в IV четверти";
+
         }
 
         /// <summary>
@@ -273,7 +283,19 @@
         public static string FibonacciSum(int n)
         {
             // Реализовать метод для решения задачи
-            throw new NotImplementedException();
+            if (n <= 0)
+                return "Невозможно вычислить сумму";
+            int a = 0;
+            int b = 1;
+            int sum = 0;
+            for (int i = 0; i < n; i++)
+            {
+                sum += a;
+                int next = a + b;
+                a = b;
+                b = next;
+            }
+            return $"Сумма Первых {n} чисел Фибоначчи = {sum}";
         }
 
         /// <summary>
@@ -374,7 +396,16 @@
         public static string ReverseArray(int[] array)
         {
             // Реализовать метод для решения задачи
-            throw new NotImplementedException();
+            if (array == null || array.Length == 0)
+                return "Массив не может быть пустым";
+            string result = "Обратный массив: ";
+            for (int i = array.Length - 1; i >= 0; i--)
+            {
+                result += array[i];
+                if (i > 0)
+                    result += " ";
+            }
+            return result;
         }
 
         /// <summary>
